@@ -1,0 +1,2 @@
+# libfcitx5platforminputcontextplugin
+Linux下无法输入中文问题所需fcitx5插件
