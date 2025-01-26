@@ -4,11 +4,11 @@ Linux下通过在线安装 Qt 后，QtCreator 无法输入中文，原因在与�
 
 ## 1. 确定 QtCreator 版本
 
-在 QtCreator 的 `帮助` -> `About Qt Creator...` 中存在语段：“Based on Qt xxx (GCC 10.3.1 20210422 (Red Hat 10.3.1-1), x86_64)”，由此可以确定该 QtCreator 由什么版本的 Qt 构建。**这非常关键**，关乎到能否编译成功的插件能否正常使用。
+在 QtCreator 的 `帮助` -> `About Qt Creator...` 中存在语段：“Based on Qt xxx (GCC 10.3.1 20210422 (Red Hat 10.3.1-1), x86_64)”，以此确定该 QtCreator 由什么版本的 Qt 构建。**这非常关键**，关乎编译成功的插件能否正常使用。
 
 ## 2. 复制插件到指定位置
 
-需要注意到 Releases 提供的插件编译条件为：
+Releases 提供插件编译条件为：
 ```cmake
 option(ENABLE_QT4 "Enable Qt 4" Off) # 支持 qt4
 option(ENABLE_QT5 "Enable Qt 5" Off) # 支持 Qt5
@@ -36,7 +36,7 @@ cp ./libfcitx5platforminputcontextplugin.so .../Qt/Tools/QtDesignStudio/lib/Qt/p
 cp ./libfcitx5platforminputcontextplugin.so .../Qt/6.8.1/gcc_64/plugins/platforminputcontexts/
 ```
 
-在 Releases 中存放有编译成功的特定 Qt 版本插件，如果符合 QtCreator 要求则可以直接使用，如何不行则需要查看下面的步骤进行手动编译。
+在 Releases 中存放有编译成功的特定 Qt 版本插件，如果符合 QtCreator 要求则可以直接使用，如不行则需要查看下面的步骤进行手动编译。
 
 ## 3. 手动编译
 
@@ -66,7 +66,7 @@ sudo apt-get install libxkbcommon-x11-dev libxcb1-dev libx11-xcb-dev libxcb-glx0
 
 ```bash
 git clone https://github.com/fcitx/fcitx5-qt.git
-# 或者使用ssh，需要与github进行ssh连接
+# 或者使用 ssh，需要与 github 进行 ssh 连接
 git clone git@github.com:fcitx/fcitx5-qt.git
 ```
 
@@ -81,14 +81,14 @@ git clone git@github.com:fcitx/fcitx5-qt.git
 > 一般来说，构建 `QtCreator` 的 Qt 版本比当时最新发行版本低一级。
 
 ```bash
-# 进入fcitx5-qt文件夹
+# 进入 fcitx5-qt 文件夹
 cd fcitx5-qt
 # 创建构建文件夹
 mkdir build
-# 设置QtCreator库文件环境
-export LD_LIBRARY_PATH=/home/aaron/enviroment/qt/Tools/QtCreator/lib/Qt/lib
-# 设置Qt环境
-export PATH=/home/aaron/enviroment/qt/6.7.3/gcc_64/bin:$PATH
+# 设置 QtCreator 库文件环境
+export LD_LIBRARY_PATH=.../Qt/Tools/QtCreator/lib/Qt/lib
+# 设置 Qt 环境
+export PATH=.../Qt/6.7.3/gcc_64/bin:$PATH
 ```
 
 #### 3.2.3 定义 `CMake` 构建选项
@@ -137,9 +137,9 @@ cd qt6/platforminputcontext/
 # 设置权限（建议为完整权限）
 chmod 777 ./libfcitx5platforminputcontextplugin.so
 # 复制到QtCreator库目录下
-cp ./libfcitx5platforminputcontextplugin.so ~/enviroment/qt/Tools/QtCreator/lib/Qt/plugins/platforminputcontexts/
+cp ./libfcitx5platforminputcontextplugin.so .../Qt/Tools/QtCreator/lib/Qt/plugins/platforminputcontexts/
 # 复制到对应版本的Qt目录下
-cp ./libfcitx5platforminputcontextplugin.so ~/enviroment/qt/6.7.3/gcc_64/plugins/platforminputcontexts/
+cp ./libfcitx5platforminputcontextplugin.so .../Qt/6.8.1/gcc_64/plugins/platforminputcontexts/
 ```
 
 如无出意外， `QtCreator` 应该可以正常输入中文。
